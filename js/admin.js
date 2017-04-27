@@ -1,6 +1,9 @@
 $(function () {
+
+
     $('#add-question').on('click', function () {
         var div = $('.question-container').length;
+
         $('.question-block' + div).after(
             '<div class="question-block' + parseInt(div + 1) + ' question-container">' +
             '<p class="question-number">' + parseInt(div + 1) + ' вопрос' + '</p>' +
@@ -26,20 +29,25 @@ $(function () {
         }, 500);
     });
 
+
     $('body').on('click', '.delete-question', function () {
         $(this).closest('.question-container').animate({
             "opacity": "0",
         }, 500, function () {
             $(this).remove();
+
             $('.question-container').each(function () {
                 var position = $(this).index('.question-container') + 1,
                     nextPosition = $(this).index('.question-container') + 2;
                 $(this).addClass('question-block' + position).removeClass('question-block' + nextPosition);
             });
+
             $('.question-number').each(function () {
                 var position = $(this).index('.question-number') + 1;
                 $(this).html(position + ' вопрос');
-            })
+            });
         });
     });
+
+
 });

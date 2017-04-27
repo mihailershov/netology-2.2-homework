@@ -1,19 +1,40 @@
 <?php
-
-$uploaddir = 'tests/';
-$uploadfile = $uploaddir . basename($_FILES['testfile']['name']);
-
-if ($_FILES["testfile"]["size"] > 1024*1024*1024) {
-    echo ("Размер файла превышает три мегабайта");
-    exit;
-}
-
-if (move_uploaded_file($_FILES['testfile']['tmp_name'], $uploadfile)) {
-    echo "Файл корректен и успешно загружен на сервер\n";
-} else {
-    echo "Произошла ошибка\n";
-}
-
+    $allFiles = glob('_tests/*.json');
+    $uploadfile = '_tests' . basename($_FILES['testfile']['name']);
 ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        body {
+            max-width: 1420px;
+            margin: auto;
+        }
+        h1 {
+            display: inline
+        }
+        a {
+            display: inline
+        }
+    </style>
+</head>
+<body>
+    <?php foreach ($allFiles as $file): ?>
+        <div>
+            <h1><?php echo str_replace('_tests/', '', $file); ?></h1>
+            <a href="#">Перейти на страницу с тестом</a>
+            <div class="show-content">Показать содержимое файла >>></div>
+        </div>
+    <?php endforeach; ?>
 
-<a href="admin.php"><div style="background: lightgrey; display: inline-block; float: left; margin-right: 10px; padding: 5px;"><---- Назад</div></a>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="js/list.js"></script>
+</body>
+</html>
