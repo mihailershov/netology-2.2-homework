@@ -1,6 +1,5 @@
 <?php
 
-
 ?>
 
 <!doctype html>
@@ -20,8 +19,11 @@
         <legend>Загрузите свой тест в формате json</legend>
         <input type="file" name="testfile" id="uploadfile" required>
         <input type="submit" value="Добавить в базу" id="submit-upload">
+        <input type="hidden" value="">
     </fieldset>
 </form>
+
+<div class="all-tests"><a href="list.php">Все тесты >></a></div>
 
 <form action="list.php" id="create-json">
     <fieldset>

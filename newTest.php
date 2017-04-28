@@ -5,13 +5,13 @@ $uploaddir = '_tests/';
 $uploadfile = $uploaddir . basename($_FILES['testfile']['name']);
 
 if (in_array($uploadfile, $allFiles, true)) {
-    $result = "Файл с таким именем уже существует.";
+    $result = "<p class='error'>Файл с таким именем уже существует.</p>";
 } else if ($_FILES["testfile"]["size"] > 1024 * 1024 * 1024) {
-    $result = "Размер файла превышает три мегабайта";
+    $result = "<p class='error'>Размер файла превышает три мегабайта</p>";
 } else if (move_uploaded_file($_FILES['testfile']['tmp_name'], $uploadfile)) {
-    $result = "Файл корректен и успешно загружен на сервер\n";
+    $result = "<p class='success'>Файл корректен и успешно загружен на сервер</p>";
 } else {
-    $result = "Произошла ошибка\n";
+    $result = "<p class='error'>Произошла ошибка</p>";
 }
 
 ?>
@@ -19,8 +19,7 @@ if (in_array($uploadfile, $allFiles, true)) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
@@ -47,11 +46,18 @@ if (in_array($uploadfile, $allFiles, true)) {
             margin-top: 20px;
         }
 
-        .info {
+        .success, .error {
             display: inline;
             float: left;
             padding: 5px;
             margin-top: 20px;
+        }
+
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
         }
 
         pre {
@@ -73,7 +79,7 @@ if (in_array($uploadfile, $allFiles, true)) {
 <a href="admin.php">
     <div>< Назад</div>
 </a>
-<p class="info"><?php echo $result ?></p>
+<?php echo $result ?>
 <div class="clearfix"></div>
 <h1>Служебная информация:</h1>
 <pre>

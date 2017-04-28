@@ -58,4 +58,14 @@
   padding: 5px;
 }
 
+.all-tests {
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 2rem;
+}
+.all-tests a {
+  text-decoration: none;
+  color: black;
+}
+
 /*# sourceMappingURL=admin.css.map */

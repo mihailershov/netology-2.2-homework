@@ -29,7 +29,7 @@
     <?php foreach ($allFiles as $file): ?>
         <div>
             <h1><?php echo str_replace('_tests/', '', $file); ?></h1>
-            <a href="#">Перейти на страницу с тестом</a>
+            <a href="test.php/test?number=<?php echo array_search($file, $allFiles); ?>">Перейти на страницу с тестом</a>
             <div class="show-content">Показать содержимое файла >>></div>
         </div>
     <?php endforeach; ?>
