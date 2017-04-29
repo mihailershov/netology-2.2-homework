@@ -45,7 +45,7 @@ if (isset($_POST['upload'])) {
     <pre>
         <?php print_r($allFiles); ?>
         <hr>
-        <?php   print_r($_FILES); ?>
+        <?php print_r($_FILES); ?>
     </pre>
 <?php endif; ?>
 

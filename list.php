@@ -3,9 +3,6 @@
     // Определяем массив со всеми файлами из папки с тестами
     $allFiles = glob('tests/*.json');
 
-    // Определяем загружаемый файл
-    $uploadfile = 'tests' . basename($_FILES['testfile']['name']);
-
 ?>
 <!doctype html>
 <html lang="en">
