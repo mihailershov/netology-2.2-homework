@@ -4,7 +4,11 @@
 if (isset($_POST['upload'])) {
 
     // Определяем массив со всеми файлами из папки с тестами
-    $allFiles = glob('tests/*.json');
+    if (!empty(glob('tests/*.json'))) {
+        $allFiles = glob('tests/*.json');
+    } else {
+        $allFiles = [0];
+    }
 
     // Определяем загружаемый файл
     $uploadfile = 'tests/' . basename($_FILES['testfile']['name']);
@@ -39,7 +43,7 @@ if (isset($_POST['upload'])) {
 <!-- Если файл был отправлен, то выводить информацию о файле и уведомление об успешной загрузке/ошибке -->
 
 <?php if (isset($_POST['upload'])): ?>
-    <a href="../"><div>< Назад</div></a>
+    <a href="<?php $_SERVER['HTTP_REFERER'] ?>"><div>< Назад</div></a>
     <?php echo $result; ?>
     <h1>Служебная информация:</h1>
     <pre>

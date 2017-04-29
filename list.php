@@ -14,21 +14,23 @@
     <link rel="stylesheet" href="styles/list.css">
 </head>
 <body>
-    <a href="admin.php" class="back"><div>< Назад</div></a>
+    <a href="index.php" class="back"><div>< Назад</div></a>
     <hr>
 
     <!-- Цикл, который выводит список всех загруженных файлов -->
+    <?php if (!empty($allFiles)): ?>
+        <?php foreach ($allFiles as $file): ?>
 
-    <?php foreach ($allFiles as $file): ?>
+            <div class="file-block">
+                <h1><?php echo str_replace('tests/', '', $file); ?></h1><br>
+                <em>Загружен: <?php echo date("d-m-Y H:i", filemtime($file)) ?></em><br>
+                <a href="test.php?number=<?php echo array_search($file, $allFiles); ?>">Перейти на страницу с тестом ></a>
+            </div>
+            <hr>
 
-        <div class="file-block">
-            <h1><?php echo str_replace('tests/', '', $file); ?></h1><br>
-            <em>Загружен: <?php echo date("d-m-Y H:i", filemtime($file)) ?></em><br>
-            <a href="test.php?number=<?php echo array_search($file, $allFiles); ?>">Перейти на страницу с тестом ></a>
-        </div>
-        <hr>
-
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <?php if (empty($allFiles)) echo 'Пока не загружено ни одного теста';?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="js/list.js"></script>
