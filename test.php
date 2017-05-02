@@ -15,11 +15,16 @@ $test = json_decode($test, true);
 // Если была нажата кнопка проверки теста, то проверить и вывести результат
 if (isset($_POST['check-test'])) {
     function checkTest($testFile) {
+        foreach ($testFile as $key => $item) {
+            if (!isset($_POST['answer' . $key])) {
+                echo 'Должны быть решены все задания!';
+                exit;
+            }
+        }
         $i = 0;
         $questions = 0;
         foreach ($testFile as $key => $item) {
             $questions++;
-
             // Здесь идет определение названия класса для блока с вопросом и ответом, чтобы выводить красный/зеленый фон для удобства
             // А также прибавляется 1 к переменной $i, если ответ правильный
             if ($item['correct_answer'] === $_POST['answer' . $key]) {
