@@ -60,12 +60,14 @@ if (isset($_POST['check-test'])) {
 
     <!-- Если передан номер теста в GET-запросе и пользователь еще не нажал на кнопку проверки теста, то выводить тест -->
 
-    <?php if (isset($_GET['number']) && isset($_POST['check-test']) === false): ?>
+    <?php if (isset($_GET['number']) && !isset($_POST['check-test'])): ?>
         <form method="POST">
             <h1><?php echo basename($allTests[$number]); ?></h1>
             <?php foreach($test as $key => $item):  ?>
             <fieldset>
                 <legend><?php echo $item['question'] ?></legend>
+                <div class="on-hidden-radio"></div>
+                <input type="radio" name="answer<?php echo $key ?>" id="hidden-radio" required>
                 <label><input type="radio" name="answer<?php echo $key ?>" value="0"><?php echo $item['answers'][0] ?></label><br>
                 <label><input type="radio" name="answer<?php echo $key ?>" value="1"><?php echo $item['answers'][1] ?></label><br>
                 <label><input type="radio" name="answer<?php echo $key ?>" value="2"><?php echo $item['answers'][2] ?></label><br>

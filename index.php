@@ -53,9 +53,9 @@ if (isset($_POST['upload'])) {
     </pre>
 <?php endif; ?>
 
-<!-- Если файл или форма теста не была отправлена, то выводить форму загрузки и форму создания теста -->
+<!-- Пока файл или форма теста не была отправлена, выводить форму загрузки и форму создания теста -->
 
-<?php if (isset($_POST['create']) === false && isset($_POST['upload']) === false): ?>
+<?php if (!isset($_POST['create']) && !isset($_POST['upload'])): ?>
 
     <form id="load-json" method="POST" enctype="multipart/form-data">
         <fieldset>
